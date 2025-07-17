@@ -49,7 +49,7 @@ export function AnimatedText({ text, className }: AnimatedTextProps) {
         <motion.span
           key={index}
           variants={textVariants}
-          className="inline-block mr-2 lg:mr-4"
+          className="inline-block mr-2 lg:mr-3"
         >
           {word}
         </motion.span>

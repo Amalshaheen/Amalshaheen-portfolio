@@ -42,7 +42,7 @@ const HeroSection = () => {
       >
         <motion.div variants={bentoCardVariants} className="md:col-span-4 md:row-span-1">
           <Card className="w-full h-full rounded-2xl p-8 flex items-center bg-card/50 shadow-lg">
-            <AnimatedText text="Hi, I’m Amal — a self-taught developer, community builder, and seeker of purposeful tech." />
+            <AnimatedText text="Hi, I’m Amal — a developer, builder, and seeker of purposeful tech." className="lg:text-6xl" />
           </Card>
         </motion.div>
 
