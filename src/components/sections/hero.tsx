@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatedText } from '@/components/ui/animated-text';
 import Image from 'next/image';
@@ -32,6 +32,12 @@ const BentoCard = ({ className, children, href }: { className: string, children:
 };
 
 const HeroSection = () => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const rotateX = useTransform(y, [-150, 150], [10, -10]);
+    const rotateY = useTransform(x, [-150, 150], [-10, 10]);
+
   return (
     <section className="min-h-screen container mx-auto p-4 md:p-6 lg:p-8 flex flex-col justify-center">
       <motion.div
@@ -40,10 +46,30 @@ const HeroSection = () => {
         transition={{ staggerChildren: 0.1 }}
         className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 auto-rows-[200px] md:auto-rows-auto w-full max-w-6xl mx-auto"
       >
-        <motion.div variants={bentoCardVariants} className="md:col-span-4 md:row-span-1">
-          <Card className="w-full h-full rounded-2xl p-8 flex items-center bg-card/50 shadow-lg">
-            <AnimatedText text="Hi, I’m Amal Shaheen — a developer, builder, and seeker." className="lg:text-5xl" />
-          </Card>
+        <motion.div 
+            className="md:col-span-4 md:row-span-1"
+            style={{ perspective: '800px' }}
+            onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                x.set(e.clientX - rect.left - rect.width / 2);
+                y.set(e.clientY - rect.top - rect.height / 2);
+            }}
+            onMouseLeave={() => {
+                x.set(0);
+                y.set(0);
+            }}
+        >
+          <motion.div
+            style={{ rotateX, rotateY }}
+            className="w-full h-full"
+            variants={bentoCardVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <Card className="w-full h-full rounded-2xl p-8 flex items-center bg-card/50 shadow-lg min-h-[240px]">
+              <AnimatedText text="Hi, I’m Amal Shaheen — a developer, builder, and seeker." className="lg:text-6xl" />
+            </Card>
+          </motion.div>
         </motion.div>
 
         <BentoCard className="md:col-span-2 md:row-span-2 group" href="#projects">
