@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/providers/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: "Amal's Digital Garden",
+  title: "Amal Shaheen's Digital Garden",
   description: 'A purpose-driven builder, a self-taught learner, and a community contributor.',
 };
 
