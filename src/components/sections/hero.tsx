@@ -1,13 +1,14 @@
 "use client";
 
 import React from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatedText } from '@/components/ui/animated-text';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { ArrowDown, ArrowRight, Code, Mail, User } from 'lucide-react';
+import { useTilt } from '@/hooks/use-tilt';
 
 const bentoCardVariants = {
   initial: { opacity: 0, scale: 0.95 },
@@ -33,14 +34,7 @@ const BentoCard = ({ className, children, href }: { className: string, children:
 };
 
 const HeroSection = () => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
-    const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
-
-    const rotateX = useTransform(mouseYSpring, [-150, 150], [5, -5]);
-    const rotateY = useTransform(mouseXSpring, [-150, 150], [-5, 5]);
+  const { style, onMouseMove, onMouseLeave } = useTilt();
 
   return (
     <section className="min-h-screen container mx-auto p-4 md:p-6 lg:p-8 flex flex-col justify-center">
@@ -53,18 +47,11 @@ const HeroSection = () => {
         <motion.div 
             className="md:col-span-4 md:row-span-1"
             style={{ perspective: '800px' }}
-            onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                x.set(e.clientX - rect.left - rect.width / 2);
-                y.set(e.clientY - rect.top - rect.height / 2);
-            }}
-            onMouseLeave={() => {
-                x.set(0);
-                y.set(0);
-            }}
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
         >
           <motion.div
-            style={{ rotateX, rotateY }}
+            style={style}
             className="w-full h-full"
             variants={bentoCardVariants}
             initial="initial"
@@ -78,6 +65,8 @@ const HeroSection = () => {
                         hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8 } }
                     }}
+                    initial="hidden"
+                    animate="visible"
                 >
                     Engineering Student & Full-Stack Developer
                 </motion.p>
@@ -87,6 +76,8 @@ const HeroSection = () => {
                         hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.8 } }
                     }}
+                    initial="hidden"
+                    animate="visible"
                 >
                     <Link href="#projects" passHref>
                         <Button size="lg">View My Projects</Button>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -13,7 +13,7 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from './button';
+import { useTilt } from '@/hooks/use-tilt';
 
 type Project = {
   title: string;
@@ -25,11 +25,7 @@ type Project = {
 };
 
 export function ProjectCard({ project }: { project: Project }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-100, 100], [10, -10]);
-  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+  const { style, onMouseMove, onMouseLeave } = useTilt({ rotate: 10 });
 
   return (
     <Dialog>
@@ -37,18 +33,11 @@ export function ProjectCard({ project }: { project: Project }) {
         <motion.div
           style={{ perspective: '800px' }}
           className="w-full"
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            x.set(e.clientX - rect.left - rect.width / 2);
-            y.set(e.clientY - rect.top - rect.height / 2);
-          }}
-          onMouseLeave={() => {
-            x.set(0);
-            y.set(0);
-          }}
+          onMouseMove={onMouseMove}
+          onMouseLeave={onMouseLeave}
         >
           <motion.div
-            style={{ rotateX, rotateY }}
+            style={style}
             className="w-full h-full"
           >
             <Card className="w-full h-full overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
