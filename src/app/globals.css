@@ -84,11 +84,40 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .mesh-gradient-background {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mesh-gradient-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: 
+      radial-gradient(ellipse 50% 50% at 20% 40%, hsla(var(--primary), 0.2), transparent),
+      radial-gradient(ellipse 50% 50% at 80% 60%, hsla(var(--accent), 0.2), transparent);
+    animation: move-gradient 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes move-gradient {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      transform: translate(-10%, 10%) scale(1.5);
+    }
   }
 }
