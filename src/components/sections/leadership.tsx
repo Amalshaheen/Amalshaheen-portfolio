@@ -2,67 +2,88 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
-import { Users, Zap, Award } from 'lucide-react';
+import { Briefcase, Building, Code, Shield } from 'lucide-react';
 
-const roles = [
+const timelineEvents = [
   {
-    icon: <Users className="w-8 h-8 text-primary" />,
-    title: "Community Lead",
-    organization: "TinkerHub",
-    date: "2021 - Present",
-    description: "Leading a vibrant community of developers. Organized 20+ workshops and a national-level hackathon, impacting over 500 students.",
+    icon: <Building className="h-6 w-6" />,
+    date: "July 2024 – Present",
+    title: "Campus Lead",
+    organization: "TinkerHub GEC Kozhikode",
+    description: "Leading the campus chapter, setting strategic direction, and mentoring members.",
   },
   {
-    icon: <Zap className="w-8 h-8 text-primary" />,
-    title: "Project Mentor",
-    organization: "Open Source Initiative",
-    date: "2022 - 2023",
-    description: "Mentored new contributors, providing guidance on code quality, PR etiquette, and navigating large codebases.",
+    icon: <Code className="h-6 w-6" />,
+    date: "March 2024 – Present",
+    title: "Mobile Development IG Lead",
+    organization: "MuLearn Foundation",
+    description: "Curating learning paths and mentoring peers in mobile development, establishing expertise in Flutter.",
   },
   {
-    icon: <Award className="w-8 h-8 text-primary" />,
-    title: "Hackathon Judge",
-    organization: "TechFest Annual",
-    date: "2023",
-    description: "Evaluated over 50 project submissions based on innovation, technical complexity, and presentation.",
+    icon: <Briefcase className="h-6 w-6" />,
+    date: "February 2024 – Present",
+    title: "Webmaster",
+    organization: "IEEE ComSoc Kerala Chapter",
+    description: "Maintaining the chapter's web presence, applying technical skills in service of a professional organization.",
+  },
+  {
+    icon: <Building className="h-6 w-6" />,
+    date: "November 2023 – June 2024",
+    title: "Campus Co-Lead",
+    organization: "TinkerHub GEC Kozhikode",
+    description: "Assisted in chapter management and ran technical workshops.",
+  },
+  {
+    icon: <Shield className="h-6 w-6" />,
+    date: "November 2023 – Present",
+    title: "Student Volunteer",
+    organization: "IEEE",
+    description: "Contributing to various work teams and supporting chapter initiatives.",
   },
 ];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 100, damping: 20 }
+  },
+};
 
 const LeadershipSection = () => {
   return (
     <section id="leadership" className="container mx-auto py-24 px-4">
       <h2 className="font-headline text-4xl md:text-5xl font-bold text-center mb-4">Leadership & Community</h2>
-      <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
+      <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
         I believe in the power of community and actively contribute to fostering inclusive and collaborative tech spaces.
       </p>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {roles.map((role, index) => (
+      <div className="relative max-w-3xl mx-auto">
+        <div className="absolute left-1/2 top-0 h-full w-0.5 bg-border -translate-x-1/2"></div>
+        {timelineEvents.map((event, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={itemVariants}
           >
-            <Card className="h-full rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    {role.icon}
-                  </div>
-                  <div>
-                    <CardTitle className="font-headline text-2xl">{role.title}</CardTitle>
-                    <p className="text-sm text-muted-foreground">{role.organization}</p>
-                  </div>
+            <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+              <div className="w-1/2 px-6">
+                <div className={`p-6 rounded-2xl bg-card border shadow-lg ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                  <p className="text-sm text-primary font-semibold mb-1">{event.date}</p>
+                  <h3 className="font-headline text-xl font-semibold">{event.title}</h3>
+                  <p className="text-muted-foreground text-base font-medium mb-2">{event.organization}</p>
+                  <p className="text-muted-foreground text-sm">{event.description}</p>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm font-semibold text-primary mb-2">{role.date}</p>
-                <CardDescription>{role.description}</CardDescription>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="w-1/2 flex justify-center">
+                <div className="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-background border-4 border-primary rounded-full flex items-center justify-center text-primary">
+                  {event.icon}
+                </div>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>

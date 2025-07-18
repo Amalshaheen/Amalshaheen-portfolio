@@ -35,7 +35,7 @@ const BlogSection = () => {
   return (
     <section id="blog" className="py-24 bg-secondary">
       <div className="container mx-auto px-4">
-        <h2 className="font-headline text-4xl md:text-5xl font-bold text-center mb-4">Resources & Blog</h2>
+        <h2 className="font-headline text-4xl md:text-5xl font-bold text-center mb-4">Writing & Reflections</h2>
         <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
           Sharing insights, tutorials, and reflections from my journey in tech and community.
         </p>

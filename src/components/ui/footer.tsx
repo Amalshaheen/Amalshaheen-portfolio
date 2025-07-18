@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './button';
 import Link from 'next/link';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, Mail, Github } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -12,6 +12,18 @@ const Footer = () => {
                 <Button variant="outline" size="icon">
                     <Linkedin className="h-4 w-4" />
                     <span className="sr-only">LinkedIn</span>
+                </Button>
+            </Link>
+            <Link href="mailto:amalshaheen@ieee.org" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon">
+                    <Mail className="h-4 w-4" />
+                    <span className="sr-only">Email</span>
+                </Button>
+            </Link>
+             <Link href="https://github.com/amalshaheen" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon">
+                    <Github className="h-4 w-4" />
+                    <span className="sr-only">GitHub</span>
                 </Button>
             </Link>
         </div>

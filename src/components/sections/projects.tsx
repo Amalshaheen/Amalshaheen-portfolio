@@ -6,44 +6,44 @@ import { Button } from '../ui/button';
 
 const allProjects = [
   {
-    title: 'Digital Garden CMS',
-    description: 'A custom CMS for managing and publishing content to a personal digital garden.',
+    title: 'ThoughtTrail',
+    description: 'A personal timeline app for capturing thoughts, voice notes, and photos, reflecting a philosophy of intentional living.',
     image: 'https://placehold.co/600x400.png',
-    imgHint: 'content management',
-    tags: ['Next.js', 'TypeScript', 'Firebase'],
-    details: 'This project involved building a full-stack application from scratch. The main challenge was designing a flexible schema that could accommodate various types of content, from blog posts to project showcases. I acted as the sole developer, handling everything from UI/UX design to database architecture and deployment.',
+    imgHint: 'journal app',
+    tags: ['Flutter', 'In Progress'],
+    details: 'This project is a direct reflection of my personal philosophy focused on intentional living and self-awareness. It demonstrates my ability to build a project from a philosophical standpoint and manage a passion project alongside academic responsibilities.',
+    category: 'Mobile App',
+  },
+  {
+    title: 'Personal Money Manager',
+    description: 'A simple web app to track credits and debits, marking my first full-stack project.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'finance tracker',
+    tags: ['Node.js', 'MongoDB', 'Completed'],
+    details: 'This app marks my successful transition from frontend-only development to building a complete, end-to-end application. It was a crucial step in understanding backend systems and database management.',
     category: 'Web App',
   },
   {
-    title: 'Community Event Platform',
-    description: 'A platform for organizing and managing tech community events, workshops, and hackathons.',
+    title: 'Shopkeeping App',
+    description: 'A business management tool for sales, inventory, and billing, designed for a real-world family business.',
     image: 'https://placehold.co/600x400.png',
-    imgHint: 'event platform',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    details: 'As a co-lead of a large student developer community, I identified the need for a centralized platform to manage our activities. I led a team of three developers to build this platform. My role focused on backend development and project management, ensuring we delivered a scalable and user-friendly solution.',
-    category: 'Web App',
+    imgHint: 'inventory management',
+    tags: ['Flutter', 'On Hold'],
+    details: 'This ambitious project highlights an entrepreneurial mindset and provided valuable lessons in project scoping, prioritization, and managing real-world constraints and stakeholder expectations.',
+    category: 'Mobile App',
   },
   {
-    title: 'Framer Motion Cheatsheet',
-    description: 'An interactive cheatsheet for Framer Motion, helping developers quickly find and understand animations.',
+    title: 'Useless Projects (Makethon)',
+    description: 'A creative cross-platform app built for a fun, innovation-focused event hosted by TinkerHub.',
     image: 'https://placehold.co/600x400.png',
-    imgHint: 'animation cheatsheet',
-    tags: ['Open Source', 'Framer Motion', 'React'],
-    details: 'This is a popular open-source project I started to help the community. It features live-editable code snippets and visual demonstrations of various animation properties. It has received over 500 stars on GitHub and multiple community contributions.',
-    category: 'Open Source',
-  },
-  {
-    title: 'Portfolio Website',
-    description: 'This very website, designed as a digital garden to showcase my work and thoughts.',
-    image: 'https://placehold.co/600x400.png',
-    imgHint: 'portfolio design',
-    tags: ['Next.js', 'TailwindCSS', 'UI/UX'],
-    details: 'I designed and built this portfolio to reflect my identity as a purpose-driven builder. The project involved creating a custom design system, implementing complex animations with Framer Motion, and structuring the site in a modular, maintainable way using Next.js App Router.',
-    category: 'Web App',
+    imgHint: 'creative coding',
+    tags: ['Flutter', 'Completed'],
+    details: 'This project showcases creativity, rapid prototyping skills, and the ability to deliver a functional product under the tight deadlines of an event-driven environment like a makethon.',
+    category: 'Mobile App',
   },
 ];
 
-const categories = ['All', 'Web App', 'Open Source'];
+const categories = ['All', 'Web App', 'Mobile App'];
 
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
@@ -57,7 +57,7 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4">
         <h2 className="font-headline text-4xl md:text-5xl font-bold text-center mb-4">Projects Showcase</h2>
         <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-          Here are some of the projects I'm proud of. Each one represents a unique challenge and a learning opportunity.
+          A selection of projects that demonstrate my skills and my passion for building with purpose.
         </p>
 
         <div className="flex justify-center gap-2 mb-12">

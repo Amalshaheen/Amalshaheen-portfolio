@@ -40,7 +40,7 @@ type AnimatedTextProps = {
 export function AnimatedText({ text, className }: AnimatedTextProps) {
   return (
     <motion.h1
-      className={cn("font-headline text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-balance", className)}
+      className={cn("font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-balance", className)}
       variants={textContainerVariants}
       initial="hidden"
       animate="visible"

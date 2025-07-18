@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: "Amal Shaheen's Digital Garden",
-  description: 'A purpose-driven builder, a self-taught learner, and a community contributor.',
+  description: 'Engineering Student & Full-Stack Developer. A well-rounded software engineer who lives and builds with purpose and impact.',
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning style={{ scrollBehavior: 'smooth' }}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

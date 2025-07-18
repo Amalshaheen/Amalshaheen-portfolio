@@ -6,7 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { AnimatedText } from '@/components/ui/animated-text';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowDown, ArrowRight, Code, MessageSquare, User } from 'lucide-react';
+import { Button } from '../ui/button';
+import { ArrowDown, ArrowRight, Code, Mail, User } from 'lucide-react';
 
 const bentoCardVariants = {
   initial: { opacity: 0, scale: 0.95 },
@@ -66,29 +67,52 @@ const HeroSection = () => {
             initial="initial"
             animate="animate"
           >
-            <Card className="w-full h-full rounded-2xl p-8 flex items-center bg-card/50 shadow-lg min-h-[240px]">
-              <AnimatedText text="Hi, I’m Amal Shaheen — a developer, builder, and seeker." className="lg:text-6xl" />
+            <Card className="w-full h-full rounded-2xl p-8 flex flex-col justify-center text-center bg-card/50 shadow-lg min-h-[300px]">
+                <AnimatedText text="Amal Shaheen" className="lg:text-7xl" />
+                <motion.p 
+                    className="font-body text-xl md:text-2xl text-muted-foreground mt-4"
+                    variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8 } }
+                    }}
+                >
+                    Engineering Student & Full-Stack Developer
+                </motion.p>
+                <motion.div 
+                    className="mt-8 flex justify-center gap-4"
+                    variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.8 } }
+                    }}
+                >
+                    <Link href="#projects" passHref>
+                        <Button size="lg">View My Projects</Button>
+                    </Link>
+                    <Link href="#contact" passHref>
+                        <Button size="lg" variant="outline">Contact Me</Button>
+                    </Link>
+                </motion.div>
             </Card>
           </motion.div>
         </motion.div>
 
-        <BentoCard className="md:col-span-2 md:row-span-2 group" href="#projects">
-            <div className='flex flex-col h-full'>
-                <Code className="w-8 h-8 text-primary mb-4" />
-                <h3 className="font-headline text-2xl font-semibold">Projects</h3>
-                <p className="text-muted-foreground mt-2 flex-grow">A selection of my work, from web apps to open source contributions.</p>
+        <BentoCard className="md:col-span-2 md:row-span-2 group">
+            <div className='flex flex-col h-full z-10'>
+                <h3 className="font-headline text-2xl font-semibold">Core Philosophy</h3>
+                <p className="text-muted-foreground mt-2 flex-grow">"Code isn’t just what I do. It’s how I shape a life of intention, contribution, and growth. I want my skills to serve something bigger than myself."</p>
                 <div className='flex items-center text-sm font-semibold text-primary mt-4'>
-                    View Projects <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    A well-rounded software engineer who lives and builds with purpose and impact.
                 </div>
             </div>
-            <Image src="https://placehold.co/600x400.png" alt="Projects" data-ai-hint="code project" layout="fill" className="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-5 group-hover:opacity-10 transition-opacity -z-10" />
+             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-0"></div>
+            <Image src="https://placehold.co/600x600.png" alt="Philosophy" data-ai-hint="abstract geometric" layout="fill" className="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-10 group-hover:opacity-15 transition-opacity -z-10" />
         </BentoCard>
 
         <BentoCard className="md:col-span-2 md:row-span-1 group" href="#about">
             <div className='flex flex-col h-full'>
                 <User className="w-8 h-8 text-primary mb-4" />
-                <h3 className="font-headline text-2xl font-semibold">About Me</h3>
-                <p className="text-muted-foreground mt-2 flex-grow">My journey, skills, and what drives me.</p>
+                <h3 className="font-headline text-2xl font-semibold">My Journey</h3>
+                <p className="text-muted-foreground mt-2 flex-grow">From C++ to full-stack, a path of growth.</p>
                 <div className='flex items-center text-sm font-semibold text-primary mt-4'>
                     Learn More <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </div>
@@ -97,7 +121,7 @@ const HeroSection = () => {
 
         <BentoCard className="md:col-span-2 md:row-span-1 group" href="#contact">
             <div className='flex flex-col h-full'>
-                <MessageSquare className="w-8 h-8 text-primary mb-4" />
+                <Mail className="w-8 h-8 text-primary mb-4" />
                 <h3 className="font-headline text-2xl font-semibold">Let's Connect</h3>
                 <p className="text-muted-foreground mt-2 flex-grow">Reach out for collaborations or a friendly chat.</p>
                 <div className='flex items-center text-sm font-semibold text-primary mt-4'>

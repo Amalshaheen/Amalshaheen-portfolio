@@ -51,7 +51,7 @@ export function ProjectCard({ project }: { project: Project }) {
             style={{ rotateX, rotateY }}
             className="w-full h-full"
           >
-            <Card className="w-full h-full overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:shadow-primary/20">
+            <Card className="w-full h-full overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
               <CardHeader className="p-0">
                 <div className="aspect-video overflow-hidden">
                   <Image
@@ -88,7 +88,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <div className="aspect-video overflow-hidden rounded-lg border">
                 <Image src={project.image} alt={project.title} width={600} height={400} data-ai-hint={project.imgHint} className="object-cover w-full h-full" />
             </div>
-            <h3 className="font-headline text-xl font-semibold">Case Study</h3>
+            <h3 className="font-headline text-xl font-semibold">Key Takeaway</h3>
             <p className="text-sm text-muted-foreground">{project.details}</p>
         </div>
       </DialogContent>
