@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatedText } from '@/components/ui/animated-text';
 import Image from 'next/image';
@@ -36,8 +36,11 @@ const HeroSection = () => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const rotateX = useTransform(y, [-150, 150], [10, -10]);
-    const rotateY = useTransform(x, [-150, 150], [-10, 10]);
+    const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
+    const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
+
+    const rotateX = useTransform(mouseYSpring, [-150, 150], [5, -5]);
+    const rotateY = useTransform(mouseXSpring, [-150, 150], [-5, 5]);
 
   return (
     <section className="min-h-screen container mx-auto p-4 md:p-6 lg:p-8 flex flex-col justify-center">
