@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { AnimatedText } from '@/components/ui/animated-text';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { ArrowDown, ArrowRight, Code, Mail, User } from 'lucide-react';
+import { ArrowDown, ArrowRight, User, Mail } from 'lucide-react';
 import { useTilt } from '@/hooks/use-tilt';
 
 const bentoCardVariants = {
@@ -17,21 +17,36 @@ const bentoCardVariants = {
 };
 
 const BentoCard = ({ className, children, href }: { className: string, children: React.ReactNode, href?: string }) => {
-  const Component = href ? Link : 'div';
+  const { style, onMouseMove, onMouseLeave } = useTilt();
+  
+  const content = (
+    <Card className={`w-full h-full rounded-2xl p-6 flex flex-col justify-between shadow-lg transition-all duration-300 ease-in-out hover:shadow-primary/20 ${className}`}>
+      {children}
+    </Card>
+  );
+
   return (
     <motion.div
       variants={bentoCardVariants}
       whileHover="hover"
       className="relative"
+      style={{ perspective: '800px' }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
     >
-      <Component href={href || ''} className="h-full">
-        <Card className={`w-full h-full rounded-2xl p-6 flex flex-col justify-between shadow-lg transition-all duration-300 ease-in-out hover:shadow-primary/20 ${className}`}>
-          {children}
-        </Card>
-      </Component>
+      <motion.div style={style} className="h-full">
+        {href ? (
+          <Link href={href} className="h-full block">
+            {content}
+          </Link>
+        ) : (
+          <div className="h-full">{content}</div>
+        )}
+      </motion.div>
     </motion.div>
   );
 };
+
 
 const HeroSection = () => {
   const { style, onMouseMove, onMouseLeave } = useTilt();

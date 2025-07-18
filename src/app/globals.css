@@ -84,7 +84,6 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
   }
 }
 
@@ -93,14 +92,9 @@ body {
     text-wrap: balance;
   }
 
-  .mesh-gradient-background {
-    position: relative;
-    overflow: hidden;
-  }
-
   .mesh-gradient-background::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
