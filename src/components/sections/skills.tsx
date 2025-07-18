@@ -3,7 +3,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Code, Server, Smartphone, Wrench, Languages, GitBranch, Firebase } from 'lucide-react';
+import { Server, Smartphone, Wrench, Languages, GitBranch } from 'lucide-react';
+
+const GithubIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+)
+
+const FirebaseIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M12.3 4.85c.31-.21.57-.45.8-.72a.5.5 0 0 0-.35-.88C11.69 3.65 6.66 2.3 4.5 5.5c-2.04 3.03.4 7.8 4 9.5.31.14.65.14.96 0l.3-.14c.3-.14.45-.37.45-.64v-4.59c0-.49-.44-.88-.97-.73-2.12.6-2.92-1.2-1.3-2.5C9.03 5.42 11.23 4.5 12.3 4.85Z"/><path d="m13.2 12.45 4.5 2.1c.4.18.88.03 1.15-.34.3-.4.27-.97-.08-1.32l-3.3-3.3c-.4-.4-.99-.5-1.45-.16l-.37.27c-.3.22-.3.65 0 .88Z"/><path d="M13.2 12.45c0 .49.44.88.97.73 2.12-.6 2.92 1.2 1.3 2.5-1.25 1-3.45 1.9-4.5 1.55a.5.5 0 0 1-.35-.88c.23-.27.49-.51.8-.72Z"/></svg>
+)
 
 const skillCategories = [
   {
@@ -44,14 +52,6 @@ const skillCategories = [
     ],
   },
 ];
-
-const GithubIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
-)
-
-const FirebaseIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M12.3 4.85c.31-.21.57-.45.8-.72a.5.5 0 0 0-.35-.88C11.69 3.65 6.66 2.3 4.5 5.5c-2.04 3.03.4 7.8 4 9.5.31.14.65.14.96 0l.3-.14c.3-.14.45-.37.45-.64v-4.59c0-.49-.44-.88-.97-.73-2.12.6-2.92-1.2-1.3-2.5C9.03 5.42 11.23 4.5 12.3 4.85Z"/><path d="m13.2 12.45 4.5 2.1c.4.18.88.03 1.15-.34.3-.4.27-.97-.08-1.32l-3.3-3.3c-.4-.4-.99-.5-1.45-.16l-.37.27c-.3.22-.3.65 0 .88Z"/><path d="M13.2 12.45c0 .49.44.88.97.73 2.12-.6 2.92 1.2 1.3 2.5-1.25 1-3.45 1.9-4.5 1.55a.5.5 0 0 1-.35-.88c.23-.27.49-.51.8-.72Z"/></svg>
-)
 
 
 const SkillsSection = () => {
