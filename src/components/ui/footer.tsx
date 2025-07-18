@@ -28,7 +28,7 @@ const Footer = () => {
             </Link>
         </div>
         <p>&copy; {new Date().getFullYear()} Amal Shaheen. All Rights Reserved.</p>
-        <p className="text-sm mt-2">Built with Next.js, Tailwind CSS, and Framer Motion.</p>
+        <p className="text-sm mt-2">Made with ❤️ by Amal Shaheen</p>
       </div>
     </footer>
   );
