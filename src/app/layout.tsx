@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { CursorFollowGradient } from '@/components/ui/cursor-gradient';
 
 export const metadata: Metadata = {
-  title: "Amal Shaheen's Digital Garden",
+  title: "Amal Shaheen Portfolio",
   description: 'Engineering Student & Full-Stack Developer. A well-rounded software engineer who lives and builds with purpose and impact.',
 };
 
