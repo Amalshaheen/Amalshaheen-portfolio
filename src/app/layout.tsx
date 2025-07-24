@@ -20,6 +20,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+      <meta name="google-site-verification" content="hBbt1v7ep1O5o1nUPEt4UPIlETBWxZ-oDdrQc_jA6ng" />
       </head>
       <body className="font-body antialiased">
         <CursorFollowGradient />
