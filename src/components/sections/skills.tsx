@@ -18,28 +18,28 @@ const skillCategories = [
     title: 'Frontend / Mobile',
     icon: <Smartphone className="w-8 h-8 text-primary" />,
     skills: [
-      { name: 'Flutter'},
-      { name: 'Dart' },
+      { name: 'Flutter', icon: <></> },
+      { name: 'Dart', icon: <></> },
     ],
   },
   {
     title: 'Backend',
     icon: <Server className="w-8 h-8 text-primary" />,
     skills: [
-      { name: 'Node.js' },
-      { name: 'Express.js' },
-      { name: 'MongoDB' },
+      { name: 'Node.js', icon: <></> },
+      { name: 'Express.js', icon: <></> },
+      { name: 'MongoDB', icon: <></> },
     ],
   },
   {
     title: 'Programming Languages',
     icon: <Languages className="w-8 h-8 text-primary" />,
     skills: [
-      { name: 'JavaScript' },
-      { name: 'Python' },
-      { name: 'C++' },
-      { name: 'C' },
-      { name: 'TypeScript' },
+      { name: 'JavaScript', icon: <></> },
+      { name: 'Python', icon: <></> },
+      { name: 'C++', icon: <></> },
+      { name: 'C', icon: <></> },
+      { name: 'TypeScript', icon: <></> },
     ],
   },
   {
