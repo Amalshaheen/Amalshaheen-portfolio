@@ -67,10 +67,12 @@ export default function NoticeMakerPage() {
       
       const notice = `അസ്സലാമു അലൈകും
 
-${formData.place} സ്വദേശി ${guardianPrefix}${formData.guardianName} എന്നവരുടെ ${formData.relation} ${formData.deceasedName} എന്നവർ ${formattedDate} ന് (${dayOfWeek}) മരണപ്പെട്ട വിവരം അറിയിക്കുന്നതോടൊപ്പം ${deceasedPossessive} പേരിൽ ജനാസ നിസ്‌കരിക്കാനും പ്രാർത്തിക്കാനും അഭ്യർത്ഥിക്കുന്നു.
 
-${formData.place} ${formattedDate}
-എന്ന് കുടുംബാംഗങ്ങൾ`
+${formData.place}-${guardianPrefix}${formData.guardianName} സ്വദേശി ${guardianPrefix}${formData.guardianName} എന്നവരുടെ ${formData.relation} ${formData.deceasedName} എന്നവർ ${formattedDate} ന് (${dayOfWeek}) മരണപ്പെട്ട വിവരം അറിയിക്കുന്നതോടൊപ്പം ${deceasedPossessive} പേരിൽ ജനാസ നിസ്‌കരിക്കാനും പ്രാർത്തിക്കാനും അഭ്യർത്ഥിക്കുന്നു.
+
+
+${formData.place}-${guardianPrefix}${formData.guardianName}                എന്ന്
+${formattedDate}                കുടുംബാംഗങ്ങൾ`
 
       setNoticeText(notice)
     } else {
@@ -93,6 +95,43 @@ ${formData.place} ${formattedDate}
 
     setIsGenerating(true)
     
+    const generateNoticeHTML = () => {
+      const lines = noticeText.split('\n').filter(line => line.trim() !== '')
+      if (lines.length < 4) {
+        return `<div class="notice-content">${noticeText.split('\n').join('<br>')}</div>`
+      }
+      
+      const greeting = lines[0] // "അസ്സലാമു അലൈകും"
+      const mainText = lines[1] // Main notice text
+      const footerLine1 = lines[2] // Place + signature
+      const footerLine2 = lines[3] // Date + family
+      
+      // Extract left and right parts from footer by splitting on multiple spaces
+      const footerParts1 = footerLine1.split(/\s{16,}/) // Split on 16+ spaces
+      const footerParts2 = footerLine2.split(/\s{16,}/)
+      
+      const leftPart1 = footerParts1[0] || ''
+      const rightPart1 = footerParts1[1] || ''
+      const leftPart2 = footerParts2[0] || ''
+      const rightPart2 = footerParts2[1] || ''
+      
+      return `
+        <div style="display: flex; flex-direction: column; height: 100%; padding: 2mm; font-size: 11pt; line-height: 1.6; color: #000; font-weight: 500;">
+          <div style="text-align: center; margin-bottom: 8mm; font-size: 12pt; font-weight: 600;">${greeting}</div>
+          <div style="text-align: justify; text-align-last: center; margin-bottom: 8mm; flex: 1; display: flex; align-items: center; justify-content: center; line-height: 1.8;">${mainText}</div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; font-size: 10pt;">
+            <div style="text-align: left; line-height: 1.4;">
+              <div>${leftPart1}</div>
+              <div>${leftPart2}</div>
+            </div>
+            <div style="text-align: right; line-height: 1.4;">
+              <div>${rightPart1}</div>
+              <div>${rightPart2}</div>
+            </div>
+          </div>
+        </div>`
+    }
+
     try {
       const htmlContent = `
 <!DOCTYPE html>
@@ -299,27 +338,19 @@ ${formData.place} ${formattedDate}
     
     <div class="page">
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTML()}
         </div>
         
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTML()}
         </div>
         
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTML()}
         </div>
         
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTML()}
         </div>
     </div>
 </body>
@@ -359,6 +390,43 @@ ${formData.place} ${formattedDate}
     if (!noticeText) {
       alert('Please fill all required fields first')
       return
+    }
+
+    const generateNoticeHTMLForPrint = () => {
+      const lines = noticeText.split('\n').filter(line => line.trim() !== '')
+      if (lines.length < 4) {
+        return `<div style="display: flex; flex-direction: column; height: 100%; padding: 2mm; font-size: 11pt; line-height: 1.6; color: #000; font-weight: 500;">${noticeText.split('\n').join('<br>')}</div>`
+      }
+      
+      const greeting = lines[0] // "അസ്സലാമു അലൈകും"
+      const mainText = lines[1] // Main notice text
+      const footerLine1 = lines[2] // Place + signature
+      const footerLine2 = lines[3] // Date + family
+      
+      // Extract left and right parts from footer by splitting on multiple spaces
+      const footerParts1 = footerLine1.split(/\s{16,}/) // Split on 16+ spaces
+      const footerParts2 = footerLine2.split(/\s{16,}/)
+      
+      const leftPart1 = footerParts1[0] || ''
+      const rightPart1 = footerParts1[1] || ''
+      const leftPart2 = footerParts2[0] || ''
+      const rightPart2 = footerParts2[1] || ''
+      
+      return `
+        <div style="display: flex; flex-direction: column; height: 100%; padding: 2mm; font-size: 11pt; line-height: 1.6; color: #000; font-weight: 500;">
+          <div style="text-align: center; margin-bottom: 8mm; font-size: 12pt; font-weight: 600;">${greeting}</div>
+          <div style="text-align: justify; text-align-last: center; margin-bottom: 8mm; flex: 1; display: flex; align-items: center; justify-content: center; line-height: 1.8;">${mainText}</div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; font-size: 10pt;">
+            <div style="text-align: left; line-height: 1.4;">
+              <div>${leftPart1}</div>
+              <div>${leftPart2}</div>
+            </div>
+            <div style="text-align: right; line-height: 1.4;">
+              <div>${rightPart1}</div>
+              <div>${rightPart2}</div>
+            </div>
+          </div>
+        </div>`
     }
 
     const htmlContent = `
@@ -566,27 +634,19 @@ ${formData.place} ${formattedDate}
     
     <div class="page">
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTMLForPrint()}
         </div>
         
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTMLForPrint()}
         </div>
         
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTMLForPrint()}
         </div>
         
         <div class="notice-box">
-            <div class="notice-content">
-                ${noticeText.split('\n').join('<br>')}
-            </div>
+            ${generateNoticeHTMLForPrint()}
         </div>
     </div>
 </body>
