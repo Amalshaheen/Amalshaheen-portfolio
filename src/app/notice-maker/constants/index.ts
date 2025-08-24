@@ -15,13 +15,13 @@ export const INITIAL_FORM_DATA: NoticeFormData = {
 }
 
 export const MALAYALAM_DAYS = [
-  'ഞായറാഴ്‌ച',
-  'തിങ്കളാഴ്‌ച', 
-  'ചൊവ്വാഴ്ച',
-  'ബുധനാഴ്ച',
-  'വ്യാഴാഴ്ച',
-  'വെള്ളിയാഴ്ച',
-  'ശനിയാഴ്ച'
+  'ഞായര്‍',
+  'തിങ്കള്‍', 
+  'ചൊവ്വ',
+  'ബുധന്‍',
+  'വ്യാഴം',
+  'വെള്ളി',
+  'ശനി'
 ] as const
 
 export const GUARDIAN_STATUS_OPTIONS = [
