@@ -47,10 +47,10 @@ export function generateNoticeHTML(content: NoticeContent): string {
   const rightPart2 = footerParts2[1] || ''
   
   return `
-    <div style="display: flex; flex-direction: column; height: 100%; padding: 2mm; font-size: 11pt; line-height: 1.6; color: #000; font-weight: 500;">
-      <div style="text-align: center; margin-bottom: 8mm; font-size: 12pt; font-weight: 600;">${greeting}</div>
-      <div style="text-align: justify; text-align-last: center; margin-bottom: 8mm; flex: 1; display: flex; align-items: center; justify-content: center; line-height: 1.8;">${mainText}</div>
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; font-size: 10pt;">
+    <div style="display: flex; flex-direction: column; height: 100%; padding: 1mm; font-size: 13pt; line-height: 1.6; color: #000; font-weight: 400;">
+      <div style="text-align: center; margin-top: 4mm; margin-bottom: 6mm; font-size: 14pt; font-weight: 600;">${greeting}</div>
+      <div style="text-align: justify; margin-bottom: 6mm; flex: 1; display: flex; align-items: center; line-height: 1.8;"><div style="width: 100%; text-indent: 2em;">${mainText}</div></div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; font-size: 12pt;">
         <div style="text-align: left; line-height: 1.4;">
           <div>${leftPart1}</div>
           <div>${leftPart2}</div>
@@ -100,14 +100,41 @@ function generateStyles(): string {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
-            gap: 5mm;
+            gap: 20mm;
             overflow: hidden;
             box-sizing: border-box;
+            position: relative;
+        }
+        
+        /* Horizontal cutting guide line */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #999;
+            opacity: 0.5;
+            z-index: 10;
+        }
+        
+        /* Vertical cutting guide line */
+        .page::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #999;
+            opacity: 0.5;
+            z-index: 10;
         }
         
         .notice-box {
             border: 2px solid #000;
-            padding: 8mm;
+            padding: 3mm;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -167,9 +194,15 @@ function generateStyles(): string {
                 width: 297mm !important;
                 height: 210mm !important;
                 margin: 0 !important;
-                padding: 10mm !important;
+                padding: 5mm !important;
                 page-break-after: avoid;
                 page-break-inside: avoid;
+            }
+            
+            /* Hide cutting guides in print */
+            .page::before,
+            .page::after {
+                display: none !important;
             }
             
             .notice-box {

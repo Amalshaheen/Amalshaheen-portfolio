@@ -22,11 +22,11 @@ export function generateNoticeText(formData: NoticeFormData): string {
   return `അസ്സലാമു അലൈകും
 
 
-${formData.place}-${guardianPrefix}${formData.guardianName} സ്വദേശി ${guardianPrefix}${formData.guardianName} എന്നവരുടെ ${formData.relation} ${formData.deceasedName} എന്നവർ ${formattedDate} ന് (${dayOfWeek}) മരണപ്പെട്ട വിവരം അറിയിക്കുന്നതോടൊപ്പം ${deceasedPossessive} പേരിൽ ജനാസ നിസ്‌കരിക്കാനും പ്രാർത്തിക്കാനും അഭ്യർത്ഥിക്കുന്നു.
+<span style="font-weight: 800;">${formData.place}</span> സ്വദേശി <span style="font-weight: 800;">${guardianPrefix}</span><span style="font-weight: 800;">${formData.guardianName}</span> എന്നവരുടെ <span style="font-weight: 800;">${formData.relation}</span> <span style="font-weight: 800;">${formData.deceasedName}</span> എന്നവർ <span style="font-weight: 800;">${formattedDate}</span> ന് (<span style="font-weight: 800;">${dayOfWeek}</span>) മരണപ്പെട്ട വിവരം അറിയിക്കുന്നതോടൊപ്പം ${deceasedPossessive} പേരിൽ ജനാസ നിസ്‌കരിക്കാനും പ്രാർത്തിക്കാനും അഭ്യർത്ഥിക്കുന്നു.
 
 
-${formData.place}-${guardianPrefix}${formData.guardianName}                എന്ന്
-${formattedDate}                കുടുംബാംഗങ്ങൾ`
+<span style="font-weight: 800;">${formData.place}</span>                <span style="font-weight: 800;">എന്ന്</span> 
+<span style="font-weight: 800;">${formattedDate}</span>                <span style="font-weight: 800;">കുടുംബാംഗങ്ങൾ</span>`
 }
 
 /**
