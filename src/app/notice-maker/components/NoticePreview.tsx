@@ -12,12 +12,18 @@ export function NoticePreview({ noticeText }: NoticePreviewProps) {
     return <EmptyPreview />
   }
 
+  // Create markup object for dangerouslySetInnerHTML
+  const createMarkup = () => {
+    return { __html: noticeText }
+  }
+
   return (
     <div className="bg-white text-black p-8 rounded-lg border-2 border-gray-400 shadow-lg">
       <div className="border-2 border-black p-6 rounded">
-        <pre className="font-serif text-sm leading-relaxed whitespace-pre-wrap text-center font-medium">
-          {noticeText}
-        </pre>
+        <div 
+          className="font-serif text-sm leading-relaxed whitespace-pre-wrap text-center font-medium"
+          dangerouslySetInnerHTML={createMarkup()}
+        />
       </div>
       <p className="text-xs text-gray-600 mt-4 text-center">
         Preview - PDF will contain 4 copies arranged in 2×2 grid
