@@ -51,6 +51,10 @@ export function generateNoticeHTML(content: NoticeContent): string {
   
   return `
     <div class="notice-content-wrapper">
+      <!-- Cutting guide markers as actual elements for better print visibility -->
+      <div class="cutting-guide cutting-guide-top"></div>
+      <div class="cutting-guide cutting-guide-left"></div>
+      
       <div class="greeting">${greeting}</div>
       <div class="main-text">
         <div class="main-text-content">${mainText}</div>
@@ -84,6 +88,10 @@ function generateStyles(): string {
             --line-height: 1.6;
             --greeting-line-height: 1.4;
             --main-text-line-height: 1.8;
+            /* Cutting guide properties for reliable printing */
+            --cutting-guide-color: #000;
+            --cutting-guide-style: solid;
+            --cutting-guide-width: 1px;
         }
         
         /* Auto font scaling for very long text */
@@ -132,30 +140,36 @@ function generateStyles(): string {
             position: relative;
         }
         
-        /* Horizontal cutting guide line */
+        /* Horizontal cutting guide line - Using border for reliable print visibility */
         .page::before {
             content: '';
             position: absolute;
             top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #999;
-            opacity: 0.5;
+            left: 10mm;
+            right: 10mm;
+            height: 0;
+            border-top: 1px solid #000;
+            opacity: 0.3;
             z-index: 10;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
         }
         
-        /* Vertical cutting guide line */
+        /* Vertical cutting guide line - Using border for reliable print visibility */
         .page::after {
             content: '';
             position: absolute;
             left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: #999;
-            opacity: 0.5;
+            top: 10mm;
+            bottom: 10mm;
+            width: 0;
+            border-left: 1px solid #000;
+            opacity: 0.3;
             z-index: 10;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
         }
         
         .notice-box {
@@ -231,29 +245,47 @@ function generateStyles(): string {
             text-align: right;
         }
         
-        /* Cut line indicators */
-        .notice-box::before {
-            content: '';
+        /* Cutting guide elements - Real HTML elements for maximum print compatibility */
+        .cutting-guide {
             position: absolute;
-            top: -1mm;
+            background: #000 !important;
+            print-color-adjust: exact !important;
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            z-index: 100;
+        }
+        
+        .cutting-guide-top {
+            top: -2px;
             left: 50%;
             transform: translateX(-50%);
             width: 8mm;
             height: 1px;
-            background: #666;
-            opacity: 0.7;
         }
         
-        .notice-box::after {
-            content: '';
-            position: absolute;
-            left: -1mm;
+        .cutting-guide-left {
+            left: -2px;
             top: 50%;
             transform: translateY(-50%);
             width: 1px;
             height: 8mm;
-            background: #666;
-            opacity: 0.7;
+        }
+        
+        /* Screen visibility enhancement */
+        @media screen {
+            .cutting-guide {
+                background: #666 !important;
+                opacity: 0.8;
+            }
+        }
+        
+        /* Print visibility enforcement */
+        @media print {
+            .cutting-guide {
+                background: #000 !important;
+                opacity: 1 !important;
+                display: block !important;
+            }
         }
         
         /* Print styles - strict A4 enforcement */
@@ -290,10 +322,26 @@ function generateStyles(): string {
                 overflow: hidden !important;
             }
             
-            /* Hide cutting guides in print */
+            /* Keep ALL cutting guides visible in print - both page and notice guides */
             .page::before,
             .page::after {
-                display: none !important;
+                border-color: #000 !important;
+                opacity: 1 !important;
+                display: block !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            /* Ensure cutting guide elements remain visible and properly colored in print */
+            .cutting-guide {
+                background: #000 !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
             }
             
             .notice-box {
@@ -585,8 +633,6 @@ function generateHeader(): string {
     <div class="no-print header-note">
         <strong>${PRINT_SETTINGS.PAGE_SIZE.toUpperCase()} Notice Layout</strong><br>
         Dimensions: ${PRINT_SETTINGS.DIMENSIONS} | Set printer to ${PRINT_SETTINGS.PAGE_SIZE} mode<br>
-        <span style="color: #28a745; font-weight: 600;">📏 Margins: 1cm outer margin, 2cm gap between notices</span><br>
-        Cut along the borders after printing for individual notices<br>
         <small style="color: #666;">💡 Click "Font Controls" button if text overflows (Ctrl/Cmd+F)</small>
     </div>`
 }
@@ -872,10 +918,18 @@ function generateFontSizeScript(): string {
                 console.log('- Grid gap:', computedStyle.gap);
                 console.log('- Page dimensions:', computedStyle.width, 'x', computedStyle.height);
             }
+            console.log('✂️ Cutting guides: Using real HTML elements for maximum print compatibility');
+            console.log('- Guide method: HTML divs with background colors');
+            console.log('- Print color adjust: exact (forces background visibility)');
+            console.log('- Fallback: Multiple browser-specific color adjustment properties');
+            
+            // Count cutting guides for verification
+            const guides = document.querySelectorAll('.cutting-guide');
+            console.log('- Found ' + guides.length + ' cutting guide elements');
         });
         
         window.addEventListener('afterprint', function() {
-            console.log('✅ Print completed');
+            console.log('✅ Print completed - cutting guides should be visible in both preview and print');
         });
     </script>`
 }
