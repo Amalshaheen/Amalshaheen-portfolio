@@ -9,7 +9,7 @@ import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { cn } from '@/lib/utils'
 import { NoticeFormData } from '../types'
-import { GUARDIAN_STATUS_OPTIONS, RELATION_OPTIONS, GENDER_OPTIONS, MALAYALAM_DAYS } from '../constants'
+import { GUARDIAN_STATUS_OPTIONS, RELATION_OPTIONS, MALAYALAM_DAYS } from '../constants'
 
 interface NoticeFormProps {
   formData: NoticeFormData
@@ -63,14 +63,6 @@ export function NoticeForm({ formData, onFormDataChange }: NoticeFormProps) {
         placeholder="Enter deceased person's name"
         value={formData.deceasedName}
         onChange={(value) => onFormDataChange('deceasedName', value)}
-      />
-
-      {/* Deceased Gender */}
-      <FormSelect
-        label="Deceased Gender *"
-        value={formData.deceasedGender}
-        options={GENDER_OPTIONS}
-        onValueChange={(value) => onFormDataChange('deceasedGender', value)}
       />
 
       {/* Date */}

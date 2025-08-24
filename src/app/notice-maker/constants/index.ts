@@ -10,7 +10,7 @@ export const INITIAL_FORM_DATA: NoticeFormData = {
   guardianStatus: 'alive',
   relation: 'മകൻ',
   deceasedName: '',
-  deceasedGender: 'male',
+  deceasedGender: 'male', // Matches default relation 'മകൻ' (Son)
   date: undefined
 }
 

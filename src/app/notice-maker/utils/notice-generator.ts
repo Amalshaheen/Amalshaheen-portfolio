@@ -15,7 +15,9 @@ export function generateNoticeText(formData: NoticeFormData): string {
   }
 
   const guardianPrefix = getGuardianPrefix(formData.guardianStatus)
-  const deceasedPossessive = getDeceasedPossessive(formData.deceasedGender)
+  // Automatically determine deceased gender based on relation
+  const deceasedGender = getGenderFromRelation(formData.relation)
+  const deceasedPossessive = getDeceasedPossessive(deceasedGender)
   const dayOfWeek = MALAYALAM_DAYS[formData.date.getDay()]
   const formattedDate = format(formData.date, 'dd/MM/yyyy')
   
@@ -68,6 +70,21 @@ function getGuardianPrefix(status: NoticeFormData['guardianStatus']): string {
  */
 function getDeceasedPossessive(gender: NoticeFormData['deceasedGender']): string {
   return gender === 'male' ? 'പരേതന്റെ' : 'പരേതയുടെ'
+}
+
+/**
+ * Automatically determine deceased gender based on relation
+ */
+export function getGenderFromRelation(relation: NoticeFormData['relation']): NoticeFormData['deceasedGender'] {
+  switch (relation) {
+    case 'മകൻ': // Son
+      return 'male'
+    case 'മകൾ': // Daughter
+    case 'ഭാര്യ': // Wife
+      return 'female'
+    default:
+      return 'male' // Default fallback
+  }
 }
 
 /**

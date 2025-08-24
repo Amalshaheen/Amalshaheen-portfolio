@@ -8,15 +8,35 @@ import {
   INITIAL_FORM_DATA, 
   generateNoticeText, 
   validateFormData,
-  generateFileName 
+  generateFileName,
+  getGenderFromRelation
 } from './index'
 
-// Test data
-const testFormData: NoticeFormData = {
+// Test data for different relations
+const testFormDataSon: NoticeFormData = {
   ...INITIAL_FORM_DATA,
   place: 'കോഴിക്കോട്',
   guardianName: 'അഹമ്മദ്',
+  relation: 'മകൻ', // Son - should be male
+  deceasedName: 'മുഹമ്മദ്',
+  date: new Date('2024-01-15')
+}
+
+const testFormDataDaughter: NoticeFormData = {
+  ...INITIAL_FORM_DATA,
+  place: 'കോഴിക്കോട്',
+  guardianName: 'അഹമ്മദ്',
+  relation: 'മകൾ', // Daughter - should be female
   deceasedName: 'ഫാത്തിമ',
+  date: new Date('2024-01-15')
+}
+
+const testFormDataWife: NoticeFormData = {
+  ...INITIAL_FORM_DATA,
+  place: 'കോഴിക്കോട്',
+  guardianName: 'അഹമ്മദ്',
+  relation: 'ഭാര്യ', // Wife - should be female
+  deceasedName: 'ആമിന',
   date: new Date('2024-01-15')
 }
 
@@ -24,22 +44,41 @@ const testFormData: NoticeFormData = {
 export function testNoticeGeneration() {
   console.log('Testing Notice Generation...')
   
-  // Test validation
-  const validation = validateFormData(testFormData)
-  console.log('Validation result:', validation)
+  // Test gender detection logic
+  console.log('\n=== Testing Gender Detection ===')
+  console.log('മകൻ (Son) -> Gender:', getGenderFromRelation('മകൻ'))
+  console.log('മകൾ (Daughter) -> Gender:', getGenderFromRelation('മകൾ'))
+  console.log('ഭാര്യ (Wife) -> Gender:', getGenderFromRelation('ഭാര്യ'))
   
-  // Test text generation
-  const noticeText = generateNoticeText(testFormData)
-  console.log('Generated notice text:', noticeText)
+  // Test different relations
+  console.log('\n=== Testing Son (മകൻ) ===')
+  const sonResult = {
+    validation: validateFormData(testFormDataSon),
+    noticeText: generateNoticeText(testFormDataSon),
+    filename: generateFileName(testFormDataSon)
+  }
+  console.log('Son result:', sonResult)
   
-  // Test filename generation
-  const filename = generateFileName(testFormData)
-  console.log('Generated filename:', filename)
+  console.log('\n=== Testing Daughter (മകൾ) ===')
+  const daughterResult = {
+    validation: validateFormData(testFormDataDaughter),
+    noticeText: generateNoticeText(testFormDataDaughter),
+    filename: generateFileName(testFormDataDaughter)
+  }
+  console.log('Daughter result:', daughterResult)
+  
+  console.log('\n=== Testing Wife (ഭാര്യ) ===')
+  const wifeResult = {
+    validation: validateFormData(testFormDataWife),
+    noticeText: generateNoticeText(testFormDataWife),
+    filename: generateFileName(testFormDataWife)
+  }
+  console.log('Wife result:', wifeResult)
   
   return {
-    validation,
-    noticeText,
-    filename
+    son: sonResult,
+    daughter: daughterResult,
+    wife: wifeResult
   }
 }
 
