@@ -15,6 +15,9 @@ export function generateNoticeText(formData: NoticeFormData): string {
   }
 
   const guardianPrefix = getGuardianPrefix(formData.guardianStatus)
+  const guardianFullName = getFullName(formData.guardianInitial, formData.guardianName)
+  const deceasedFullName = getFullName(formData.deceasedInitial, formData.deceasedName)
+  
   // Automatically determine deceased gender based on relation
   const deceasedGender = getGenderFromRelation(formData.relation)
   const deceasedPossessive = getDeceasedPossessive(deceasedGender)
@@ -24,7 +27,7 @@ export function generateNoticeText(formData: NoticeFormData): string {
   return `അസ്സലാമു അലൈകും
 
 
-<span style="font-weight: 800;">${formData.place}</span> സ്വദേശി <span style="font-weight: 800;">${guardianPrefix}</span><span style="font-weight: 800;">${formData.guardianName}</span> എന്നവരുടെ <span style="font-weight: 800;">${formData.relation}</span> <span style="font-weight: 800;">${formData.deceasedName}</span> എന്നവർ <span style="font-weight: 800;">${formattedDate}</span> ന് (<span style="font-weight: 800;">${dayOfWeek}</span>) മരണപ്പെട്ട വിവരം അറിയിക്കുന്നതോടൊപ്പം ${deceasedPossessive} പേരിൽ ജനാസ നിസ്‌കരിക്കാനും പ്രാർത്തിക്കാനും അഭ്യർത്ഥിക്കുന്നു.
+<span style="font-weight: 800;">${formData.place}</span> സ്വദേശി <span style="font-weight: 800;">${guardianPrefix}</span><span style="font-weight: 800;">${guardianFullName}</span> എന്നവരുടെ <span style="font-weight: 800;">${formData.relation}</span> <span style="font-weight: 800;">${deceasedFullName}</span> എന്നവർ <span style="font-weight: 800;">${formattedDate}</span>ന് (<span style="font-weight: 800;">${dayOfWeek}</span>) മരണപ്പെട്ട വിവരം അറിയിക്കുന്നതോടൊപ്പം ${deceasedPossessive} പേരിൽ ജനാസ നിസ്‌കരിക്കാനും പ്രാർത്തിക്കാനും അഭ്യർത്ഥിക്കുന്നു.
 
 
 <span style="font-weight: 800;">${formData.place}</span>                <span style="font-weight: 800;">എന്ന്</span> 
@@ -54,6 +57,13 @@ export function parseNoticeContent(noticeText: string): NoticeContent | null {
  */
 function getGuardianPrefix(status: boolean): string {
   return status ? 'പരേതനായ ' : ''
+}
+
+/**
+ * Concatenate initial and name if initial exists
+ */
+function getFullName(initial: string | undefined, name: string): string {
+  return initial ? `${initial} ${name}` : name
 }
 
 /**

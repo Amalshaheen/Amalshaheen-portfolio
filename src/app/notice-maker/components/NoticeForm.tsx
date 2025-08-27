@@ -46,12 +46,22 @@ export function NoticeForm({ formData, onFormDataChange }: NoticeFormProps) {
               പരേതനായ (Deceased)
             </Label>
           </div>
-          <Input
-            id="guardianName"
-            value={formData.guardianName}
-            onChange={(e) => onFormDataChange('guardianName', e.target.value)}
-            placeholder="രക്ഷിതാവിന്‍റെ പേര് നൽകുക (with initial)"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <Input
+              id="guardianInitial"
+              value={formData.guardianInitial}
+              onChange={(e) => onFormDataChange('guardianInitial', e.target.value)}
+              placeholder="മേല്‍വിലാസം (Initial)"
+              className="md:col-span-1"
+            />
+            <Input
+              id="guardianName"
+              value={formData.guardianName}
+              onChange={(e) => onFormDataChange('guardianName', e.target.value)}
+              placeholder="പേര് (Name)"
+              className="md:col-span-2"
+            />
+          </div>
         </div>
       </div>
 
@@ -64,13 +74,25 @@ export function NoticeForm({ formData, onFormDataChange }: NoticeFormProps) {
       />
 
       {/* Deceased Name */}
-      <FormField
-        id="deceasedName"
-        label="മരിച്ചയാളുടെ പേര് (Deceased Name) *"
-        placeholder="മരിച്ചയാളുടെ പേര് നൽകുക"
-        value={formData.deceasedName}
-        onChange={(value) => onFormDataChange('deceasedName', value)}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="deceasedName">മരിച്ചയാളുടെ പേര് (Deceased Name) *</Label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <Input
+            id="deceasedInitial"
+            value={formData.deceasedInitial}
+            onChange={(e) => onFormDataChange('deceasedInitial', e.target.value)}
+            placeholder="മേല്‍വിലാസം (Initial)"
+            className="md:col-span-1"
+          />
+          <Input
+            id="deceasedName"
+            value={formData.deceasedName}
+            onChange={(e) => onFormDataChange('deceasedName', e.target.value)}
+            placeholder="പേര് (Name)"
+            className="md:col-span-2"
+          />
+        </div>
+      </div>
 
       {/* Date */}
       <DatePicker

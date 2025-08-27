@@ -6,9 +6,11 @@ import { NoticeFormData } from '../types'
 
 export const INITIAL_FORM_DATA: NoticeFormData = {
   place: '',
+  guardianInitial: '',
   guardianName: '',
   guardianStatus: false, // false = alive, true = പരേതനായ (deceased male)
   relation: 'മകൻ',
+  deceasedInitial: '',
   deceasedName: '',
   deceasedGender: 'male', // Matches default relation 'മകൻ' (Son)
   date: undefined

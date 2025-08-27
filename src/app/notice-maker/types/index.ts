@@ -4,9 +4,11 @@
 
 export interface NoticeFormData {
   place: string
+  guardianInitial: string
   guardianName: string
   guardianStatus: boolean // true = പരേതനായ (deceased male), false = alive
   relation: 'മകൻ' | 'മകൾ' | 'ഭാര്യ'
+  deceasedInitial: string
   deceasedName: string
   deceasedGender: 'male' | 'female'
   date: Date | undefined
