@@ -5,11 +5,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { cn } from '@/lib/utils'
 import { NoticeFormData } from '../types'
-import { GUARDIAN_STATUS_OPTIONS, RELATION_OPTIONS, MALAYALAM_DAYS } from '../constants'
+import { RELATION_OPTIONS, MALAYALAM_DAYS } from '../constants'
 
 interface NoticeFormProps {
   formData: NoticeFormData
@@ -25,32 +26,38 @@ export function NoticeForm({ formData, onFormDataChange }: NoticeFormProps) {
       {/* Place */}
       <FormField
         id="place"
-        label="Place *"
-        placeholder="Enter place name"
+        label="സ്ഥലം (Place) *"
+        placeholder="സ്ഥലത്തിന്റെ പേര് നൽകുക"
         value={formData.place}
         onChange={(value) => onFormDataChange('place', value)}
       />
 
-      {/* Guardian Name */}
-      <FormField
-        id="guardianName"
-        label="Guardian Name *"
-        placeholder="Enter guardian name"
-        value={formData.guardianName}
-        onChange={(value) => onFormDataChange('guardianName', value)}
-      />
-
-      {/* Guardian Status */}
-      <FormSelect
-        label="Guardian Status *"
-        value={formData.guardianStatus}
-        options={GUARDIAN_STATUS_OPTIONS}
-        onValueChange={(value) => onFormDataChange('guardianStatus', value)}
-      />
+      {/* Guardian Name with Status Checkbox */}
+      <div className="space-y-3">
+        <Label htmlFor="guardianName">രക്ഷിതാവിന്‍റെ പേര് (Guardian Name) *</Label>
+        <div className="space-y-2">
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="guardianStatus"
+              checked={formData.guardianStatus}
+              onCheckedChange={(checked) => onFormDataChange('guardianStatus', !!checked)}
+            />
+            <Label htmlFor="guardianStatus" className="text-sm font-normal">
+              പരേതനായ (Deceased)
+            </Label>
+          </div>
+          <Input
+            id="guardianName"
+            value={formData.guardianName}
+            onChange={(e) => onFormDataChange('guardianName', e.target.value)}
+            placeholder="രക്ഷിതാവിന്‍റെ പേര് നൽകുക (with initial)"
+          />
+        </div>
+      </div>
 
       {/* Relation */}
       <FormSelect
-        label="Relation *"
+        label="ബന്ധം (Relation) *"
         value={formData.relation}
         options={RELATION_OPTIONS}
         onValueChange={(value) => onFormDataChange('relation', value)}
@@ -59,15 +66,15 @@ export function NoticeForm({ formData, onFormDataChange }: NoticeFormProps) {
       {/* Deceased Name */}
       <FormField
         id="deceasedName"
-        label="Deceased Name *"
-        placeholder="Enter deceased person's name"
+        label="മരിച്ചയാളുടെ പേര് (Deceased Name) *"
+        placeholder="മരിച്ചയാളുടെ പേര് നൽകുക"
         value={formData.deceasedName}
         onChange={(value) => onFormDataChange('deceasedName', value)}
       />
 
       {/* Date */}
       <DatePicker
-        label="Date *"
+        label="തിയ്യതി (Date) *"
         date={formData.date}
         onDateChange={(date) => onFormDataChange('date', date)}
       />

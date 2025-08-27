@@ -27,15 +27,15 @@ export default function NoticeMakerPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Notice Maker</h1>
-          <p className="text-muted-foreground">Create Malayalam death notices with ease</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">മരണക്കത്ത് Maker</h1>
+          <p className="text-muted-foreground">എളുപ്പത്തിൽ മലയാളം മരണക്കത്ത് തയ്യാറാക്കാം</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Form Section */}
           <Card className="h-fit">
             <CardHeader>
-              <CardTitle>Notice Details</CardTitle>
+              <CardTitle>മരണക്കത്തിന്റെ വിവരങ്ങൾ</CardTitle>
             </CardHeader>
             <CardContent>
               <NoticeForm 
@@ -57,7 +57,7 @@ export default function NoticeMakerPage() {
           {/* Preview Section */}
           <Card>
             <CardHeader>
-              <CardTitle>Live Preview</CardTitle>
+              <CardTitle>കത്തിന്‍റെ ഉള്ളടക്കം</CardTitle>
             </CardHeader>
             <CardContent>
               <NoticePreview noticeText={noticeText} />

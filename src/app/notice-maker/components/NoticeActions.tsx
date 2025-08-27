@@ -27,7 +27,7 @@ export function NoticeActions({
         size="lg"
       >
         <Printer className="mr-2 h-4 w-4" />
-        {isGenerating ? 'Generating...' : 'Open Print Preview'}
+        {isGenerating ? 'Processing...' : 'Open Print Preview'}
       </Button>
       
       <Button 
@@ -38,12 +38,12 @@ export function NoticeActions({
         size="lg"
       >
         <Download className="mr-2 h-4 w-4" />
-        Download HTML File
+        HTML ഫയൽ ഡൗൺലോഡ് ചെയ്യുക
       </Button>
       
       {!isNoticeReady && (
         <p className="text-sm text-muted-foreground text-center">
-          Please fill all required fields to enable HTML generation
+          കത്ത് പ്രിന്റ് ചെയ്യുന്നതിന് ആവശ്യമായ എല്ലാ ഫീൽഡുകളും പൂരിപ്പിക്കുക
         </p>
       )}
     </div>

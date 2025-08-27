@@ -5,7 +5,7 @@
 export interface NoticeFormData {
   place: string
   guardianName: string
-  guardianStatus: 'alive' | 'deceased-male' | 'deceased-female'
+  guardianStatus: boolean // true = പരേതനായ (deceased male), false = alive
   relation: 'മകൻ' | 'മകൾ' | 'ഭാര്യ'
   deceasedName: string
   deceasedGender: 'male' | 'female'
@@ -24,6 +24,6 @@ export interface HTMLGenerationOptions {
   includeStyles?: boolean
 }
 
-export type GuardianStatus = NoticeFormData['guardianStatus']
+export type GuardianStatus = boolean // true = പരേതനായ (deceased male), false = alive
 export type Relation = NoticeFormData['relation']
 export type Gender = NoticeFormData['deceasedGender']

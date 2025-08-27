@@ -7,7 +7,7 @@ import { NoticeFormData } from '../types'
 export const INITIAL_FORM_DATA: NoticeFormData = {
   place: '',
   guardianName: '',
-  guardianStatus: 'alive',
+  guardianStatus: false, // false = alive, true = പരേതനായ (deceased male)
   relation: 'മകൻ',
   deceasedName: '',
   deceasedGender: 'male', // Matches default relation 'മകൻ' (Son)
@@ -22,12 +22,6 @@ export const MALAYALAM_DAYS = [
   'വ്യാഴം',
   'വെള്ളി',
   'ശനി'
-] as const
-
-export const GUARDIAN_STATUS_OPTIONS = [
-  { value: 'alive', label: 'Alive' },
-  { value: 'deceased-male', label: 'Deceased Male' },
-  { value: 'deceased-female', label: 'Deceased Female' }
 ] as const
 
 export const RELATION_OPTIONS = [

@@ -26,7 +26,7 @@ export function NoticePreview({ noticeText }: NoticePreviewProps) {
         />
       </div>
       <p className="text-xs text-gray-600 mt-4 text-center">
-        Preview - PDF will contain 4 copies arranged in 2×2 grid
+        കത്തിന്‍റെ - PDF ൽ 2×2 ഗ്രിഡിൽ ക്രമീകരിച്ച 4 കോപ്പികൾ ഉണ്ടായിരിക്കും
       </p>
     </div>
   )
@@ -36,8 +36,8 @@ function EmptyPreview() {
   return (
     <div className="bg-gray-50 text-gray-500 p-8 rounded-lg border-2 border-dashed border-gray-300 text-center min-h-[300px] flex items-center justify-center">
       <div>
-        <p className="text-lg font-medium mb-2">Fill the form to see preview</p>
-        <p className="text-sm">Your notice will appear here as you type</p>
+        <p className="text-lg font-medium mb-2">കത്തിന്‍റെ ഉള്ളടക്കം കാണാൻ ഫോം പൂരിപ്പിക്കുക</p>
+        <p className="text-sm">നിങ്ങൾ ടൈപ്പ് ചെയ്യുമ്പോൾ മരണക്കത്ത് ഇവിടെ ദൃശ്യമാകും</p>
       </div>
     </div>
   )

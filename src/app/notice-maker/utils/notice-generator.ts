@@ -52,17 +52,8 @@ export function parseNoticeContent(noticeText: string): NoticeContent | null {
 /**
  * Get the appropriate guardian prefix based on status
  */
-function getGuardianPrefix(status: NoticeFormData['guardianStatus']): string {
-  switch (status) {
-    case 'alive':
-      return ''
-    case 'deceased-male':
-      return 'പരേതനായ '
-    case 'deceased-female':
-      return 'പരേതയായ '
-    default:
-      return ''
-  }
+function getGuardianPrefix(status: boolean): string {
+  return status ? 'പരേതനായ ' : ''
 }
 
 /**
@@ -116,7 +107,7 @@ export function validateFormData(formData: NoticeFormData): {
  * Generate filename for download based on form data
  */
 export function generateFileName(formData: NoticeFormData): string {
-  const date = formData.date ? format(formData.date, 'yyyy-MM-dd') : 'notice'
+  const date = formData.date ? format(formData.date, 'yyyy-MM-dd') : 'maranakkathu'
   const place = formData.place ? `-${formData.place.replace(/\s+/g, '-')}` : ''
-  return `notice-${date}${place}.html`
+  return `maranakkathu-${date}${place}.html`
 }

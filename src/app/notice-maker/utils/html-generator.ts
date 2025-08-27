@@ -12,7 +12,7 @@ export function generatePrintableHTML(
   content: NoticeContent,
   options: HTMLGenerationOptions = {}
 ): string {
-  const { title = `Notice - ${new Date().toISOString().split('T')[0]}` } = options
+  const { title = `മരണക്കത്ത് - ${new Date().toISOString().split('T')[0]}` } = options
   
   return `<!DOCTYPE html>
 <html lang="ml">
@@ -631,7 +631,7 @@ function generateStyles(): string {
 function generateHeader(): string {
   return `
     <div class="no-print header-note">
-        <strong>${PRINT_SETTINGS.PAGE_SIZE.toUpperCase()} Notice Layout</strong><br>
+        <strong>${PRINT_SETTINGS.PAGE_SIZE.toUpperCase()} മരണക്കത്ത് ലേഔട്ട്</strong><br>
         Dimensions: ${PRINT_SETTINGS.DIMENSIONS} | Set printer to ${PRINT_SETTINGS.PAGE_SIZE} mode<br>
         <small style="color: #666;">💡 Click "Font Controls" button if text overflows (Ctrl/Cmd+F)</small>
     </div>`
@@ -705,7 +705,7 @@ function generateFontSizeControls(): string {
 function generateDimensionsInfo(): string {
   return `
     <div class="dimensions-info no-print">
-        ${PRINT_SETTINGS.PAGE_SIZE.toUpperCase()}: ${PRINT_SETTINGS.DIMENSIONS} | ${PRINT_SETTINGS.COPIES_PER_PAGE} notices
+        ${PRINT_SETTINGS.PAGE_SIZE.toUpperCase()}: ${PRINT_SETTINGS.DIMENSIONS} | ${PRINT_SETTINGS.COPIES_PER_PAGE} മരണക്കത്തുകൾ
     </div>`
 }
 
