@@ -6,8 +6,11 @@ import { NoticeForm } from './components/NoticeForm'
 import { NoticePreview } from './components/NoticePreview'
 import { NoticeActions } from './components/NoticeActions'
 import { NoticeInstructions } from './components/NoticeInstructions'
+import { PrintableNotice } from './components/PrintableNotice'
+import { FontControls } from './components/FontControls'
 import { useNoticeForm } from './hooks/useNoticeForm'
 import { useNoticeGenerator } from './hooks/useNoticeGenerator'
+import { parseNoticeContent } from './utils/notice-generator'
 
 /**
  * Notice Maker Page - Main component for the Malayalam notice generator
@@ -18,9 +21,13 @@ export default function NoticeMakerPage() {
     noticeText,
     isNoticeReady,
     isGenerating,
+    printableRef,
     handleOpenPrintPreview,
-    handleDownloadHTML
+    handleDownloadPDF
   } = useNoticeGenerator(formData)
+
+  // Parse notice content for the printable component
+  const noticeContent = noticeText ? parseNoticeContent(noticeText) : null
 
   return (
     <div className="min-h-screen bg-background py-8 px-4">
@@ -48,8 +55,13 @@ export default function NoticeMakerPage() {
                   isNoticeReady={isNoticeReady}
                   isGenerating={isGenerating}
                   onOpenPrintPreview={handleOpenPrintPreview}
-                  onDownloadHTML={handleDownloadHTML}
+                  onDownloadPDF={handleDownloadPDF}
                 />
+              </div>
+
+              {/* Optional Font Controls */}
+              <div className="mt-6 pt-6 border-t">
+                <FontControls />
               </div>
             </CardContent>
           </Card>
@@ -68,6 +80,16 @@ export default function NoticeMakerPage() {
         {/* Instructions */}
         <div className="mt-8">
           <NoticeInstructions />
+        </div>
+
+        {/* Hidden printable component for react-to-print */}
+        <div style={{ display: 'none' }}>
+          {noticeContent && (
+            <PrintableNotice 
+              ref={printableRef}
+              content={noticeContent}
+            />
+          )}
         </div>
       </div>
     </div>

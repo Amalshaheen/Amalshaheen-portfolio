@@ -10,7 +10,6 @@ export { useNoticeGenerator } from './hooks/useNoticeGenerator'
 
 // Utility exports
 export * from './utils/notice-generator'
-export * from './utils/html-generator'
 
 // Type exports
 export * from './types'

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Download, Printer } from 'lucide-react'
+import { Download, Printer, FileText } from 'lucide-react'
 
 interface NoticeActionsProps {
   isNoticeReady: boolean
   isGenerating: boolean
   onOpenPrintPreview: () => void
-  onDownloadHTML: () => void
+  onDownloadPDF: () => void
 }
 
 /**
@@ -16,7 +16,7 @@ export function NoticeActions({
   isNoticeReady,
   isGenerating,
   onOpenPrintPreview,
-  onDownloadHTML
+  onDownloadPDF
 }: NoticeActionsProps) {
   return (
     <div className="space-y-3">
@@ -27,23 +27,35 @@ export function NoticeActions({
         size="lg"
       >
         <Printer className="mr-2 h-4 w-4" />
-        {isGenerating ? 'Processing...' : 'Open Print Preview'}
+        {isGenerating ? 'Preparing Print...' : 'Print Notice'}
       </Button>
       
       <Button 
-        onClick={onDownloadHTML} 
+        onClick={onDownloadPDF} 
         className="w-full" 
         variant="outline"
-        disabled={!isNoticeReady}
+        disabled={!isNoticeReady || isGenerating}
         size="lg"
       >
-        <Download className="mr-2 h-4 w-4" />
-        HTML ഫയൽ ഡൗൺലോഡ് ചെയ്യുക
+        <FileText className="mr-2 h-4 w-4" />
+        {isGenerating ? 'Generating PDF...' : 'PDF ഫയൽ ഡൗൺലോഡ് ചെയ്യുക'}
       </Button>
       
       {!isNoticeReady && (
         <p className="text-sm text-muted-foreground text-center">
           കത്ത് പ്രിന്റ് ചെയ്യുന്നതിന് ആവശ്യമായ എല്ലാ ഫീൽഡുകളും പൂരിപ്പിക്കുക
+        </p>
+      )}
+      
+      {isNoticeReady && (
+        <p className="text-xs text-muted-foreground text-center">
+          💡 പ്രിന്റ് ബട്ടൺ ക്ലിക്ക് ചെയ്യുമ്പോൾ A4 ലാൻഡ്‌സ്‌കേപ്പിൽ 2×2 ഗ്രിഡിൽ 4 കോപ്പികൾ പ്രിന്റ് ചെയ്യും
+        </p>
+      )}
+      
+      {isNoticeReady && (
+        <p className="text-xs text-green-600 text-center">
+          📄 PDF ഡൗൺലോഡ് ചെയ്ത് പിന്നീട് പ്രിന്റ് ചെയ്യാവുന്നതാണ്
         </p>
       )}
     </div>
