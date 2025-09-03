@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Cpu, Rocket, Server } from 'lucide-react';
+import { Code, Cpu, Microchip, Rocket, Server } from 'lucide-react';
 
 const journeyPoints = [
   {
@@ -21,9 +21,9 @@ const journeyPoints = [
     description: "Despite pursuing an ECE degree, my true passion lies in Computer Science. I am actively self-studying CS fundamentals to build a strong theoretical foundation.",
   },
   {
-    icon: <Server className="h-6 w-6" />,
-    title: "Becoming a Well-Rounded Engineer",
-    description: "I'm currently diving deep into data structures (CLRS) and backend systems with Node.js and MongoDB to become a versatile and impactful full-stack engineer.",
+    icon: <Microchip  className="h-6 w-6" />,
+    title: "Becoming a Maker",
+    description: "I'm currently diving deep into building Maker Mindset - where curiosity fuels my learning. started hardware based projects.",
   },
 ];
 
