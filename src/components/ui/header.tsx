@@ -10,6 +10,7 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetTitle,
 } from "@/components/ui/sheet"
 
 
@@ -34,6 +35,7 @@ const Header = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
+        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <div className="flex flex-col gap-6 p-6">
             <Link href="/" className="font-headline font-bold text-lg" onClick={() => setMobileMenuOpen(false)}>
               Amal Shaheen
