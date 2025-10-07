@@ -634,6 +634,17 @@ function generateHeader(): string {
         <strong>${PRINT_SETTINGS.PAGE_SIZE.toUpperCase()} മരണക്കത്ത് ലേഔട്ട്</strong><br>
         Dimensions: ${PRINT_SETTINGS.DIMENSIONS} | Set printer to ${PRINT_SETTINGS.PAGE_SIZE} mode<br>
         <small style="color: #666;">💡 Click "Font Controls" button if text overflows (Ctrl/Cmd+F)</small>
+        <div id="mobile-notice" style="display: none; background: #fffbe6; border: 1px solid #ffd77a; padding: 8px; margin-top: 10px; border-radius: 4px;">
+          📱 <strong>Mobile Users:</strong> Please select landscape orientation and A4 paper size in your print settings.
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Show special notice for mobile users
+            if (window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+              document.getElementById('mobile-notice').style.display = 'block';
+            }
+          });
+        </script>
     </div>`
 }
 
@@ -745,8 +756,32 @@ export function openPrintWindow(htmlContent: string): boolean {
       printWindow.document.write(htmlContent)
       printWindow.document.close()
       
-      // Wait for fonts to load before focusing
+      // Wait for fonts to load before preparing for print
       setTimeout(() => {
+        // Set up print preferences for all devices including mobile
+        if (typeof printWindow.matchMedia === 'function') {
+          const mediaQueryList = printWindow.matchMedia('print');
+          mediaQueryList.addEventListener('change', (mql) => {
+            if (mql.matches) {
+              console.log('🖨️ Print media query activated - setting landscape and A4');
+            }
+          });
+        }
+        
+        // Force landscape orientation for mobile devices
+        const style = printWindow.document.createElement('style');
+        style.textContent = 
+          '@page { size: A4 landscape !important; margin: 0mm !important; }' +
+          '@media print {' +
+          '  html, body {' +
+          '    width: 297mm !important;' +
+          '    height: 210mm !important;' +
+          '    -webkit-print-color-adjust: exact !important;' +
+          '    print-color-adjust: exact !important;' +
+          '  }' +
+          '}';
+        printWindow.document.head.appendChild(style);
+        
         printWindow.focus()
       }, 1000)
       
@@ -908,7 +943,7 @@ function generateFontSizeScript(): string {
             console.log('- Each notice area: ~128.5mm × 85mm');
         });
         
-        // Print event debugging
+        // Print event debugging and configuration
         window.addEventListener('beforeprint', function() {
             console.log('🖨️ Preparing for print with exact margins:');
             const page = document.querySelector('.page');
@@ -926,6 +961,31 @@ function generateFontSizeScript(): string {
             // Count cutting guides for verification
             const guides = document.querySelectorAll('.cutting-guide');
             console.log('- Found ' + guides.length + ' cutting guide elements');
+            
+            // Try to force landscape mode - this helps with some mobile browsers
+            try {
+                // Inject or refresh the print styles to ensure landscape orientation
+                let printStyle = document.getElementById('force-landscape-print');
+                if (!printStyle) {
+                    printStyle = document.createElement('style');
+                    printStyle.id = 'force-landscape-print';
+                    document.head.appendChild(printStyle);
+                }
+                
+                printStyle.textContent = 
+                    '@page { size: A4 landscape !important; margin: 0mm !important; }' +
+                    '@media print {' +
+                    '  html, body {' +
+                    '    width: 297mm !important;' +
+                    '    height: 210mm !important;' +
+                    '    -webkit-print-color-adjust: exact !important;' +
+                    '    print-color-adjust: exact !important;' +
+                    '  }' +
+                    '}';
+                console.log('✅ Landscape print styles refreshed/applied');
+            } catch (e) {
+                console.error('Error setting landscape print mode:', e);
+            }
         });
         
         window.addEventListener('afterprint', function() {

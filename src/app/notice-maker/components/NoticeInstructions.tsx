@@ -20,8 +20,8 @@ const instructions = [
     text: '<strong>"HTML ഫയൽ ഡൗൺലോഡ് ചെയ്യുക"</strong> - പിന്നീട് തുറന്ന് പ്രിന്റ് ചെയ്യാവുന്ന HTML ഫയൽ ഡൗൺലോഡ് ചെയ്യുന്നു',
   },
   {
-    icon: <Monitor className="h-5 w-5 text-primary" />,
-    text: 'മികച്ച ഫലത്തിനായി പ്രിന്റർ <strong>A4 ലാൻഡ്‌സ്കേപ്പ് മോഡിൽ</strong> സജ്ജീകരിക്കുക',
+    icon: <Monitor className="h-5 w-5 text-red-500" />,
+    text: '<strong style="color: #e11d48;">പ്രധാനം:</strong> പ്രിന്റർ <strong>A4 ലാൻഡ്‌സ്കേപ്പ് മോഡിൽ</strong> (landscape) മാത്രം സജ്ജീകരിക്കുക - മൊബൈലിലും ഡെസ്‌ക്‌ടോപ്പിലും',
   },
   {
     icon: <Scissors className="h-5 w-5 text-primary" />,

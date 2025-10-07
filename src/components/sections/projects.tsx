@@ -16,12 +16,12 @@ const allProjects = [
   },
   {
     title: 'Personal Money Manager',
-    description: 'A simple web app to track credits and debits, marking my first full-stack project.',
-    image: 'https://placehold.co/600x400.png',
+    description: 'A simple Flutter web app to track credits and debits, marking my first full-stack style project.',
+    image: '/images/Personal Money Manager.png',
     imgHint: 'finance tracker',
-    tags: ['Node.js', 'MongoDB', 'Completed'],
+    tags: ['Flutter', 'Hive', 'Completed', 'Hosted'],
     details: 'This app marks my successful transition from frontend-only development to building a complete, end-to-end application. It was a crucial step in understanding backend systems and database management.',
-    category: 'Web App',
+    category: 'Mobile App',
   },
   {
     title: 'Shopkeeping App',
@@ -41,7 +41,53 @@ const allProjects = [
     details: 'This project showcases creativity, rapid prototyping skills, and the ability to deliver a functional product under the tight deadlines of an event-driven environment like a makethon.',
     category: 'Mobile App',
   },
+  {
+    title: 'Personal Portfolio',
+    description: 'Animated and interactive personal website showcasing my skills and projects.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'developer portfolio website',
+    tags: ['React', 'Next.js', 'TailwindCSS', 'Hosted'],
+    details: 'This portfolio demonstrates my frontend expertise and ability to build clean, animated, production-ready websites using modern frameworks.',
+    category: 'Web App',
+  },
+  {
+    title: 'Notice Maker',
+    description: 'A simple tool to quickly generate official college/community notices.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'notice generator UI',
+    tags: ['React', 'TailwindCSS'],
+    details: 'Built as a separate page within my portfolio, this tool demonstrates my ability to build practical, reusable components for real-world use cases.',
+    category: 'Web App',
+  },
+  {
+    title: 'ProComm Website',
+    description: 'Official website for IEEE ComSoc Kerala Section’s ProComm event.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'event website UI',
+    tags: ['React', 'Next.js', 'TailwindCSS', 'Collaboration'],
+    details: 'Developed collaboratively as Web Master, this website showcases teamwork, responsive design skills, and deploying production-grade sites.',
+    category: 'Web App',
+  },
+  {
+    title: 'Dot Dash Dot',
+    description: 'A puzzle game inspired by Morse code, focused on logical problem-solving.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'puzzle game UI',
+    tags: ['React', 'Game'],
+    details: 'This project explores game-like interactivity with React, focusing on minimal UI and clean logic handling.',
+    category: 'Web App',
+  },
+  {
+    title: 'Puzzle Camera',
+    description: 'A funny puzzle game that splits images into tiles to rearrange, built during Useless Projects 2.0.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'puzzle camera game',
+    tags: ['React', 'Team Project', 'Makethon'],
+    details: 'Built collaboratively in a short hackathon-style event, this project shows teamwork and rapid prototyping with React.',
+    category: 'Web App',
+  },
 ];
+
 
 const categories = ['All', 'Web App', 'Mobile App'];
 
