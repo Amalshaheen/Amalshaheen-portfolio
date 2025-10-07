@@ -13,6 +13,7 @@ const allProjects = [
     tags: ['Flutter', 'In Progress'],
     details: 'This project is a direct reflection of my personal philosophy focused on intentional living and self-awareness. It demonstrates my ability to build a project from a philosophical standpoint and manage a passion project alongside academic responsibilities.',
     category: 'Mobile App',
+    github: 'https://github.com/Amalshaheen/thought_trail',
   },
   {
     title: 'Personal Money Manager',
@@ -42,6 +43,26 @@ const allProjects = [
     category: 'Mobile App',
   },
   {
+    title: 'Netflix Clone App',
+    description: 'A Flutter-based Netflix UI clone showcasing responsive layouts and media handling.',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'netflix clone ui',
+    tags: ['Flutter'],
+    details: 'A UI-focused clone demonstrating list/grid layouts, media playback placeholders, and responsive design in Flutter.',
+    category: 'Mobile App',
+    github: 'https://github.com/Amalshaheen/netflix_clone',
+  },
+  {
+    title: 'Kathaloop',
+    description: 'A storytelling/reading app built with Flutter (KathaLoop).',
+    image: 'https://placehold.co/600x400.png',
+    imgHint: 'story app',
+    tags: ['Flutter'],
+    details: 'A mobile app focused on presenting stories with simple navigation and pleasant reading experience.',
+    category: 'Mobile App',
+    github: 'https://github.com/Amalshaheen/katha_loop',
+  },
+  {
     title: 'Personal Portfolio',
     description: 'Animated and interactive personal website showcasing my skills and projects.',
     image: 'https://placehold.co/600x400.png',
@@ -49,6 +70,8 @@ const allProjects = [
     tags: ['React', 'Next.js', 'TailwindCSS', 'Hosted'],
     details: 'This portfolio demonstrates my frontend expertise and ability to build clean, animated, production-ready websites using modern frameworks.',
     category: 'Web App',
+    live: 'https://amalshaheen.is-a.dev',
+    github: 'https://github.com/Amalshaheen/Amalshaheen-portfolio',
   },
   {
     title: 'Notice Maker',
@@ -58,6 +81,7 @@ const allProjects = [
     tags: ['React', 'TailwindCSS'],
     details: 'Built as a separate page within my portfolio, this tool demonstrates my ability to build practical, reusable components for real-world use cases.',
     category: 'Web App',
+    live: 'https://amalshaheen.is-a.dev/notice-maker',
   },
   {
     title: 'ProComm Website',
@@ -67,6 +91,7 @@ const allProjects = [
     tags: ['React', 'Next.js', 'TailwindCSS', 'Collaboration'],
     details: 'Developed collaboratively as Web Master, this website showcases teamwork, responsive design skills, and deploying production-grade sites.',
     category: 'Web App',
+    live: 'https://procomm-2025.vercel.app',
   },
   {
     title: 'Dot Dash Dot',
@@ -76,6 +101,8 @@ const allProjects = [
     tags: ['React', 'Game'],
     details: 'This project explores game-like interactivity with React, focusing on minimal UI and clean logic handling.',
     category: 'Web App',
+    live: 'https://dash-dot-challenge.vercel.app',
+    github: 'https://github.com/Amalshaheen/dash-dot-challenge',
   },
   {
     title: 'Puzzle Camera',
@@ -85,6 +112,8 @@ const allProjects = [
     tags: ['React', 'Team Project', 'Makethon'],
     details: 'Built collaboratively in a short hackathon-style event, this project shows teamwork and rapid prototyping with React.',
     category: 'Web App',
+    live: 'https://puzzle-camera.vercel.app',
+    github: 'https://github.com/abhiramrtk/puzzle-camera',
   },
 ];
 

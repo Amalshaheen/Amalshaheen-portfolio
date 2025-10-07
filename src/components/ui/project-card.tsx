@@ -5,6 +5,9 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Github, ExternalLink } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -22,6 +25,8 @@ type Project = {
   imgHint: string;
   tags: string[];
   details: string;
+  github?: string;
+  live?: string;
 };
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -61,6 +66,27 @@ export function ProjectCard({ project }: { project: Project }) {
                     <Badge key={tag} variant="secondary">{tag}</Badge>
                   ))}
                 </div>
+                {/* GitHub / Live buttons (render only when links are provided) */}
+                {(project.github || project.live) && (
+                  <div className="flex items-center gap-3 mt-4">
+                    {project.github && (
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="sm" className="flex items-center">
+                          <Github className="h-4 w-4" />
+                          <span>GitHub</span>
+                        </Button>
+                      </Link>
+                    )}
+                    {project.live && (
+                      <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                        <Button variant="default" size="sm" className="flex items-center">
+                          <ExternalLink className="h-4 w-4" />
+                          <span>Live</span>
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </motion.div>
@@ -79,6 +105,27 @@ export function ProjectCard({ project }: { project: Project }) {
             </div>
             <h3 className="font-headline text-xl font-semibold">Key Takeaway</h3>
             <p className="text-sm text-muted-foreground">{project.details}</p>
+            {/* Buttons in the dialog detail view */}
+            {(project.github || project.live) && (
+              <div className="flex flex-wrap items-center gap-3 mt-4">
+                {project.github && (
+                  <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm" className="flex items-center">
+                      <Github className="h-4 w-4" />
+                      <span>GitHub</span>
+                    </Button>
+                  </Link>
+                )}
+                {project.live && (
+                  <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                    <Button variant="default" size="sm" className="flex items-center">
+                      <ExternalLink className="h-4 w-4" />
+                      <span>Live</span>
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            )}
         </div>
       </DialogContent>
     </Dialog>
