@@ -123,9 +123,25 @@ const categories = ['All', 'Web App', 'Mobile App'];
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
 
-  const filteredProjects = filter === 'All'
+  const filteredProjects = (filter === 'All'
     ? allProjects
-    : allProjects.filter(p => p.category === filter);
+    : allProjects.filter(p => p.category === filter))
+    .sort((a, b) => {
+      // Projects with both live demo and github come first
+      const aHasBoth = (a.live && a.github) ? 1 : 0;
+      const bHasBoth = (b.live && b.github) ? 1 : 0;
+      if (aHasBoth !== bHasBoth) return bHasBoth - aHasBoth;
+      
+      // Then projects with live demo
+      const aHasLive = a.live ? 1 : 0;
+      const bHasLive = b.live ? 1 : 0;
+      if (aHasLive !== bHasLive) return bHasLive - aHasLive;
+      
+      // Then projects with github
+      const aHasGithub = a.github ? 1 : 0;
+      const bHasGithub = b.github ? 1 : 0;
+      return bHasGithub - aHasGithub;
+    });
 
   return (
     <section id="projects" className="py-24 bg-secondary">
