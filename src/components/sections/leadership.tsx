@@ -7,21 +7,21 @@ import { Briefcase, Building, Code, Shield } from 'lucide-react';
 const timelineEvents = [
   {
     icon: <Building className="h-6 w-6" />,
-    date: "July 2024 – Present",
+    date: "July 2025 – Present",
     title: "Campus Lead",
     organization: "TinkerHub GEC Kozhikode",
     description: "Leading the campus chapter, setting strategic direction, and mentoring members.",
   },
   {
     icon: <Code className="h-6 w-6" />,
-    date: "March 2024 – Present",
+    date: "March 2025 – July 2025",
     title: "Mobile Development IG Lead",
     organization: "MuLearn Foundation",
     description: "Curating learning paths and mentoring peers in mobile development, establishing expertise in Flutter.",
   },
   {
     icon: <Briefcase className="h-6 w-6" />,
-    date: "February 2024 – Present",
+    date: "February 2025 – Present",
     title: "Webmaster",
     organization: "IEEE ComSoc Kerala Chapter",
     description: "Maintaining the chapter's web presence, applying technical skills in service of a professional organization.",
